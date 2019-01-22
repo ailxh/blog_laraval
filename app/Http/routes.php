@@ -25,4 +25,6 @@ Route::group(['middleware'=>['admin.login'],'prefix'=>'admin','namespace'=>'Admi
     Route::get('info', 'IndexController@info');
     Route::get('outlogin', 'LoginController@outlogin');
     Route::any('changepass', 'IndexController@changepass');
+
+    Route::resource('category', 'CategoryController');
 });

@@ -69,7 +69,8 @@
                     <label>官方交流网站：</label><span><a href="#">http://bbs.houdunwang.com</a></span>
                 </li>
                 <li>
-                    <label>官方交流QQ群：</label><span><a href="#"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png"></a></span>
+                    <label>官方交流QQ群：</label><span><a href="#"><img border="0"
+                                                                  src="http://pub.idqqimg.com/wpa/images/group.png"></a></span>
                 </li>
             </ul>
         </div>

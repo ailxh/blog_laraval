@@ -49,7 +49,7 @@ class IndexController extends CommonController
                 {
                     $user->user_pass = Crypt::encrypt($input['password']);
                     $user->Update();
-                    return redirect('admin/info');
+                    return back()->with('errors','密码修改成功！');
                 }
                 else
                 {
