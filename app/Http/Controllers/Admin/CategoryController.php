@@ -22,6 +22,7 @@ class CategoryController extends CommonController
         $data = (new Category)->tree();
         return view('admin.category.index')->with('data', $data);
     }
+
     /*
      * 修改分类排序
      */
@@ -50,6 +51,7 @@ class CategoryController extends CommonController
             return $return_data;
         }
     }
+
     //get  admin/category/create  添加分类
     public function create()
     {
@@ -57,6 +59,7 @@ class CategoryController extends CommonController
         $data = (new Category)->where($where_sql)->orderBy('cate_id','desc')->get();
         return view('admin/category/add',compact('data'));
     }
+
     //post  admin/category
     public function store()
     {
@@ -93,23 +96,36 @@ class CategoryController extends CommonController
             return view('admin/category/create');
         }
     }
+
+    //get  admin/category/{category}/edit
+    public function edit($cate_id)
+    {
+        $field = Category::find($cate_id);
+        $where_sql['cate_pid'] = 0;
+        $data = (new Category)->where($where_sql)->orderBy('cate_id','desc')->get();
+        return view('admin.category.edit',compact('field','data'));
+    }
+    //PUT  admin/category/{category}
+    public function update($cate_id)
+    {
+        $input = Input::except('_token','_method');
+        $str = Category::where('cate_id',$cate_id)->update($input);
+        if ($str)
+        {
+            return redirect('admin/category');
+        }
+        else
+        {
+            return back()->with('errors','修改失败！');
+        }
+    }
     //get  admin/category/{category}
     public function show()
     {
 
     }
-    //PUT  admin/category/{category}
-    public function update()
-    {
-
-    }
     //DELETE  admin/category/{category}
     public function destroy()
-    {
-
-    }
-    //get  admin/category/{category}/edit
-    public function edit()
     {
 
     }
