@@ -68,7 +68,7 @@
                         <td>{{$v->cate_view}}</td>
                         <td>
                             <a href="{{url('admin/category/'.$v->cate_id.'/edit')}}">修改</a>
-                            <a href="#">删除</a>
+                            <a href="JavaScript:;" onclick="delectCate({{$v->cate_id}})">删除</a>
                         </td>
                     </tr>
                     @endforeach
@@ -125,6 +125,37 @@
                     {
                         layer.alert(data.msg, {icon: 5});
                     }
+                }
+            );
+        }
+
+        //删除分类
+        function delectCate(cate_id) {
+            layer.confirm(
+                '您确定删除这个分类?',
+                {
+                    btn:['确定','取消']
+                },function () {
+                    $.post(
+                        "{{url('admin/category')}}"+'/'+cate_id,
+                        {
+                            "_token":"{{csrf_token()}}",
+                            "_method":"DELETE"
+                        },
+                        function (data) {
+                            if (data.status == 1)
+                            {
+                                layer.alert(data.msg, {icon:6});
+                                location.href = location.href;
+                            }
+                            else
+                            {
+                                layer.alert(data.msg, {icon:5});
+                            }
+                        }
+                    );
+                },function () {
+
                 }
             );
         }
